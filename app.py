@@ -1,4 +1,4 @@
-from flask import Flask , render_template , url_for
+from flask import Flask , render_template , url_for, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -12,7 +12,6 @@ class company_suggestion(db.Model):
 	share_price = db.Column(db.Integer(), unique=False, nullable=True)
 db.create_all()
 
-	
 posts = [
 	{
 		'Stock_Price':'Stock Price',
@@ -45,9 +44,15 @@ posts = [
 def home():
 	return render_template('home.html',posts=posts)
 
-@app.route("/company_invested")
-def about():
-	return render_template('company_invested.html',title='Companies')
+@app.route("/company_invested/", methods = ["GET","POST"])
+def company_suggested():
+	if request.method == "GET":
+		print("---------------hello---------------")
+		return render_template('company_invested.html',title='Companies')
+
+	if request.method == "POST":
+		print("--------------in post-----------------")
+		
 
 if __name__ == "__main__":
 	app.run(debug=True)
