@@ -1,4 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Companies page</h1>
+          <form action="#">
+               <table>
+                   <tr>
+                        <div>
+                                <th> <label for="company_name">Company Name:</label></th>
+                                <td><input type="text" name="company_name" placeholder="Company Name"></td>
+                                <td><label for="company_name"><abbr title="required" aria-label="required">*</abbr></label></td>
+                        </div> 
+                   </tr>
+                    <tr>
+                        <div>
+                            <th><label for="reason">Reason:</label></th>
+                            <td><input type="text" name="reason" placeholder="Enter Reason"></td>
+                            <td><label for="reason"><abbr title="required" aria-label="required">*</abbr></label></td>
+                        </div> 
+                    </tr>
+                     <tr>
+
+                        <div>
+                             <th><label for="shareprice">Current Shareprice:</label></th>
+                             <td> <input type="text" name="shareprice" placeholder="Shareprice"></td>
+                             <td>  <label for="shareprice"></label></td>
+                        </div> 
+                     </tr>
+                </table>
+
+                <input type="submit" value="Submit">
+          </form>
 {% endblock content %}
+
