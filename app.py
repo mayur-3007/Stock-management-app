@@ -17,7 +17,7 @@ posts = [
 	},
 	{
 		'Stock_Price':'Stock Price',
-		'title': 'Company 3',
+		'title': 'Company 66',
 		'content':'Short content',
 		'date_posted':'April 21,2019'
 	},
