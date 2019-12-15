@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-          <form action="#">
+          <form action="/company_invest" method="POST">
                <table>
                    <tr>
                         <div>
@@ -12,7 +12,7 @@
                     <tr>
                         <div>
                             <th><label for="reason">Reason:</label></th>
-                            <td><input type="text" name="reason" placeholder="Enter Reason"></td>
+                            <td><textarea type="text" name="reason" placeholder="Enter Reason" rows="3" cols="50"></textarea></td>
                             <td><label for="reason"><abbr title="required" aria-label="required">*</abbr></label></td>
                         </div> 
                     </tr>
@@ -24,9 +24,14 @@
                              <td>  <label for="shareprice"></label></td>
                         </div> 
                      </tr>
+                     <tr>
+                         <td>
+                            <input type="submit" value="Submit">
+                         </td>
+                     </tr>
                 </table>
 
-                <input type="submit" value="Submit">
+                
           </form>
 {% endblock content %}
 
