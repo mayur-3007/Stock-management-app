@@ -1,7 +1,18 @@
 from flask import Flask , render_template , url_for
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.sqlite3"
+db = SQLAlchemy(app)
 
+class company_suggestion(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	company_name = db.Column(db.String(120), unique=True, nullable=False)
+	reason = db.Column(db.String (600), unique=False, nullable=False)
+	share_price = db.Column(db.Integer(), unique=False, nullable=True)
+db.create_all()
+
+	
 posts = [
 	{
 		'Stock_Price':'Stock Price',
@@ -24,7 +35,7 @@ posts = [
 	{
 		'Stock_Price':'Stock Price',
 		'title': 'Company 543',
-		'content':'Short content'
+		'content':'Short content',
 		'date_posted':'April 21,2019'
 	}
 ]
