@@ -49,5 +49,9 @@ def home():
 def about():
 	return render_template('company_invested.html',title='Companies')
 
+@app.route("/login")
+def login():
+	return render_template('login.html')
+
 if __name__ == "__main__":
 	app.run(debug=True)
