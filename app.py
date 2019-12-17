@@ -19,7 +19,22 @@ db.create_all()
 @app.route("/")
 @app.route("/home")
 def home():
-	return render_template('home.html')
+	li = company_suggestion.query.order_by(company_suggestion.date).all()
+	post = []
+	print(li,"--------------",type(li))
+	for row in li:
+		dic = 	{
+		'Stock_Price':0,
+		'title': '',
+		'content':'',
+		'date_posted':0
+		}    		
+		dic["Stock_Price"] = row.share_price
+		dic["title"] = row.company_name
+		dic["content"] = row.reason
+		dic["date_posted"] = row.date
+		post.append(dic)
+	return render_template('home.html',posts=post)
 
 @app.route("/company_invested/", methods = ["GET","POST"])
 def company_suggested():
@@ -37,28 +52,26 @@ def company_suggested():
 			db.session.commit()
 		except:
 			return "Sorry, there was issue while inserting the values."
-		li = company_suggestion.query.all()
-		dic = 	{
-		'Stock_Price':0,
-		'title': '',
-		'content':'',
-		'date_posted':0
-		}
+		li = company_suggestion.query.order_by(company_suggestion.date).all()
 		post = []
-		for row in li:	
-			dic["Stock_Price"] = row.share_price	
+		print(li,"--------------",type(li))
+		for row in li:
+			dic = 	{
+			'Stock_Price':0,
+			'title': '',
+			'content':'',
+			'date_posted':0
+			}    		
+			dic["Stock_Price"] = row.share_price
 			dic["title"] = row.company_name
-			dic["reason"] = row.reason
+			dic["content"] = row.reason
 			dic["date_posted"] = row.date
-			print(dic)
 			post.append(dic)
-		print(post)
 		return render_template('home.html',posts=post)
 		
-
 @app.route("/login")
 def login():
-	return render_template('login.html')
+	return render_template('Login.html')
 
 if __name__ == "__main__":
 	app.run(debug=True)
